@@ -2,10 +2,12 @@ package luzq.std.jstd.sp.config;
 
 import luzq.std.jstd.sp.bean.ProfileBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 @Configuration
+@ComponentScan("luzq.std.jstd.sp")
 public class MainConfig {
 
     @Bean

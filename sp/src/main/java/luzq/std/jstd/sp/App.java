@@ -1,6 +1,7 @@
 package luzq.std.jstd.sp;
 
 import luzq.std.jstd.sp.bean.ProfileBean;
+import luzq.std.jstd.sp.bean.event.EventPublisher;
 import luzq.std.jstd.sp.config.MainConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -16,10 +17,15 @@ public class App {
         context.refresh();
 //        context.start();
 
-
+        //profile
         ProfileBean bean = context.getBean(ProfileBean.class);
         System.out.println(bean.getId());
         System.out.println(bean.getName());
+
+        //event
+        EventPublisher publisher = context.getBean(EventPublisher.class);
+        publisher.publishDemoEvent();
+
         context.close();
     }
 }
