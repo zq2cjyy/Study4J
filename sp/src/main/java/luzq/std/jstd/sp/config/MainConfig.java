@@ -1,13 +1,11 @@
 package luzq.std.jstd.sp.config;
 
 import luzq.std.jstd.sp.bean.ProfileBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.*;
 
 @Configuration
 @ComponentScan("luzq.std.jstd.sp")
+@PropertySource("classpath:sys.properties")
 public class MainConfig {
 
     @Bean
