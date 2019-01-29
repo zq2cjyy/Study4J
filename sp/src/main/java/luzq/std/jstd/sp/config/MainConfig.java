@@ -6,6 +6,7 @@ import org.springframework.context.annotation.*;
 @Configuration
 @ComponentScan("luzq.std.jstd.sp")
 @PropertySource("classpath:sys.properties")
+@Import(TaskConfig.class)
 public class MainConfig {
 
     @Bean

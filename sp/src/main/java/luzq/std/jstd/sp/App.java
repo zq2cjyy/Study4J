@@ -17,9 +17,10 @@ public class App {
 //        context.start();
         String demoName = context.getEnvironment().getProperty("demo.class");
 
+        System.out.println("开始执行DEMO:" + demoName);
         DemoService demo = (DemoService) context.getBean(demoName);
         demo.run();
-
+        System.out.println("执行完成");
         context.close();
     }
 }
