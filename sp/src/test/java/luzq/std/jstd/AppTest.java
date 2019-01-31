@@ -10,6 +10,9 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -34,5 +37,17 @@ public class AppTest {
     public void testCondition() {
         systemBean.printName();
         assertTrue(systemBean instanceof LinuxBean);
+    }
+
+    @Test
+    public void testList() {
+        List<String> list = new ArrayList<>();
+        list.add("lu zhi qiang");
+        list.add("chen jing");
+        list.add("2gui");
+        list.add("3gui");
+        String key = "lu";
+        String keyplus = " zhi qiang";
+        assertTrue(list.contains(key + keyplus));
     }
 }
