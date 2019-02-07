@@ -11,6 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import static org.junit.Assert.assertTrue;
@@ -49,5 +50,18 @@ public class AppTest {
         String key = "lu";
         String keyplus = " zhi qiang";
         assertTrue(list.contains(key + keyplus));
+    }
+
+    @Test
+    public void testSystemDate() {
+        System.out.println(Calendar.getInstance().getTimeInMillis());
+        System.out.println(System.currentTimeMillis());
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 8);
+        calendar.set(Calendar.MINUTE, 30);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        System.out.println(calendar.getTime());
+        System.out.println(System.currentTimeMillis() > calendar.getTimeInMillis());
     }
 }
