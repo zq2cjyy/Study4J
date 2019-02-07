@@ -1,16 +1,55 @@
 package luzq.std.jstd.base.parallel;
 
-import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.*;
 
 public class ToolsDemo {
     public void run() throws InterruptedException, BrokenBarrierException {
 //        runCountDownLatch();
-        runCyclicBarrier();
+//        runCyclicBarrier();
+        runSemaphore();
     }
 
-    public void runCountDownLatch() throws InterruptedException {
+    /**
+     * 虽然线程池大小为5 但是从运行结果来看 明显是5个同时执行
+     * 这都是因为信号量对象 Semaphore 再起作用
+     *
+     * @throws InterruptedException
+     */
+    private void runSemaphore() throws InterruptedException {
+        System.out.println("开始执行 Semaphore");
+        ExecutorService executor = Executors.newFixedThreadPool(10);
+        final Semaphore semaphore = new Semaphore(5);
+        for (int i = 0; i < 10; i++) {
+            executor.execute(new Runnable() {
+                public void run() {
+                    try {
+                        semaphore.acquire(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("线程中" + Thread.currentThread().getName());
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    semaphore.release();
+                }
+            });
+        }
+        executor.shutdown();
+        while (!executor.awaitTermination(1L, TimeUnit.SECONDS)) {
+            System.out.println("正在等待任务完成");
+        }
+        System.out.println("Semaphore 执行完成");
+    }
+
+    /**
+     * 类似于 GoLang中的 WaitGroup
+     *
+     * @throws InterruptedException
+     */
+    private void runCountDownLatch() throws InterruptedException {
         System.out.println("开始执行 CountDownLatch");
         CountDownLatch latch = new CountDownLatch(5);
         for (int i = 0; i < 5; i++) {
@@ -21,7 +60,15 @@ public class ToolsDemo {
         System.out.println("CountDownLatch 任务完成");
     }
 
-    public void runCyclicBarrier() throws BrokenBarrierException, InterruptedException {
+    /**
+     * 加强版的 CountDownLatch
+     * 可以reset 继续使用
+     * 可以设置第二个参数 再所有线程都await以后 即 达到屏障  开始执行这个Runnable对象
+     *
+     * @throws BrokenBarrierException
+     * @throws InterruptedException
+     */
+    private void runCyclicBarrier() throws BrokenBarrierException, InterruptedException {
         System.out.println("开始执行 CyclicBarrier -1");
 
         CyclicBarrier cyclicBarrier = new CyclicBarrier(6, new Runnable() {
