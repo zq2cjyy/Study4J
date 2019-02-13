@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Service
 public class ScheduledTaskService {
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 500000)
     public void doSth() {
         System.out.println(new Date());
     }

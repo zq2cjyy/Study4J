@@ -6,9 +6,12 @@ import luzq.std.jstd.sp.bean.condition.SystemBean;
 import luzq.std.jstd.sp.bean.condition.WindowsBean;
 import luzq.std.jstd.sp.condition.LinuxCondition;
 import luzq.std.jstd.sp.condition.WindowsCondition;
+import org.springframework.amqp.core.Queue;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.*;
 
 @Configuration
+@EnableAutoConfiguration
 @ComponentScan("luzq.std.jstd.sp")
 @PropertySource("classpath:sys.properties")
 @Import({TaskConfig.class, ScheduledConfig.class})
@@ -43,5 +46,10 @@ public class MainConfig {
     @Conditional(WindowsCondition.class)
     public SystemBean windows() {
         return new WindowsBean();
+    }
+
+    @Bean
+    public Queue rabbitSender() {
+        return new Queue("luzq-queue");
     }
 }
