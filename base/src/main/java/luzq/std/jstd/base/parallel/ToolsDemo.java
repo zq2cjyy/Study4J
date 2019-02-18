@@ -10,7 +10,7 @@ public class ToolsDemo {
     }
 
     /**
-     * 虽然线程池大小为5 但是从运行结果来看 明显是5个同时执行
+     * 虽然线程池大小为10 但是从运行结果来看 明显是5个同时执行
      * 这都是因为信号量对象 Semaphore 再起作用
      *
      * @throws InterruptedException
