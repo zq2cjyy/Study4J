@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 
+import java.nio.charset.Charset;
+
 @Configuration
 public class MainConfig {
 
@@ -17,6 +19,7 @@ public class MainConfig {
         FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
         FastJsonConfig config = new FastJsonConfig();
         config.setSerializerFeatures(SerializerFeature.PrettyFormat);
+        config.setCharset(Charset.forName("UTF-8"));
 
         converter.setFastJsonConfig(config);
 

@@ -75,4 +75,9 @@ public class TestController {
         mqService.sendToRabbit(msg);
         return "ok";
     }
+
+    @RequestMapping(value = "exception")
+    public String exception() throws Exception {
+        throw new Exception("出现错误");
+    }
 }
