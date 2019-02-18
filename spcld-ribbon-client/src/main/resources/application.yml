@@ -1,10 +1,11 @@
 
+
 server:
-  port: 18082
+  port: 18083
 
 spring:
   application:
-    name: spcld-eureka-client1
+    name: spcld-ribbon-client
 
 eureka:
   instance:
