@@ -1,5 +1,6 @@
 package luzq.std.jstd.spcld.controller;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import luzq.std.jstd.spcld.service.HelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +18,12 @@ public class TestController {
      * @return
      */
     @RequestMapping("/hi")
+    @HystrixCommand(fallbackMethod = "error")
     public String hi() {
         return helloService.getHello();
+    }
+
+    public String error() {
+        return "error";
     }
 }

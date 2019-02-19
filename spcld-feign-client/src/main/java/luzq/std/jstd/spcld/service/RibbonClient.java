@@ -4,8 +4,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient("spcld-ribbon-client")
+@FeignClient(value = "spcld-eureka-client1", fallback = RibbonService.class)
 public interface RibbonClient {
-    @RequestMapping(value = "hi", method = RequestMethod.GET)
+    @RequestMapping(value = "hello", method = RequestMethod.GET)
     String hi();
 }
