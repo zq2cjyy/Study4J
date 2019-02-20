@@ -16,6 +16,6 @@ public class TestController {
 
     @GetMapping("hi")
     public String hi() {
-        return ribbonClient.hi();
+        return "feign-" + ribbonClient.hi();
     }
 }

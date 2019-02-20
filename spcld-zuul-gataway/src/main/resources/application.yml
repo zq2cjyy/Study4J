@@ -1,0 +1,20 @@
+
+server:
+  port: 18085
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:18080/eureka/
+
+spring:
+  application:
+    name: spcld-zuul-gataway
+zuul:
+  routes:
+    api-a:
+      path: /api-a/**
+      service-id: spcld-ribbon-client
+    api-b:
+      path: /api-b/**
+      service-id: spcld-feign-client

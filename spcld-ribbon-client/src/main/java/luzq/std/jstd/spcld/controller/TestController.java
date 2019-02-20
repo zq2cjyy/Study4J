@@ -20,7 +20,7 @@ public class TestController {
     @RequestMapping("/hi")
     @HystrixCommand(fallbackMethod = "error")
     public String hi() {
-        return helloService.getHello();
+        return "ribbon-" + helloService.getHello();
     }
 
     public String error() {
