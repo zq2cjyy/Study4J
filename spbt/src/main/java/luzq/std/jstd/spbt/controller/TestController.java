@@ -7,11 +7,9 @@ import luzq.std.jstd.spbt.model.master.User;
 import luzq.std.jstd.spbt.service.AreaService;
 import luzq.std.jstd.spbt.service.MQService;
 import luzq.std.jstd.spbt.service.UserService;
+import luzq.std.jstd.spbt.utils.JedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -28,6 +26,8 @@ public class TestController {
     AreaService areaService;
     @Autowired
     MQService mqService;
+    @Autowired
+    JedisUtil jedisUtil;
 
     @RequestMapping("/hello")
     public String hello() {
@@ -79,5 +79,11 @@ public class TestController {
     @RequestMapping(value = "exception")
     public String exception() throws Exception {
         throw new Exception("出现错误");
+    }
+
+    @GetMapping("jedis")
+    public String jedis(String key) {
+        String val = jedisUtil.get(key, 0);
+        return val;
     }
 }
