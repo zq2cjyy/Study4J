@@ -19,6 +19,12 @@
         <module>sp</module>
         <module>spmvc</module>
         <module>base</module>
+        <module>spbt</module>
+        <module>spcld-eureka-server</module>
+        <module>spcld-eureka-client1</module>
+        <module>spcld-ribbon-client</module>
+        <module>spcld-feign-client</module>
+        <module>spcld-zuul-gataway</module>
     </modules>
 
     <properties>
