@@ -3,6 +3,7 @@ package luzq.std.jstd.spbt.controller;
 import luzq.std.jstd.spbt.config.SiteConfig;
 import luzq.std.jstd.spbt.model.TestModel;
 import luzq.std.jstd.spbt.model.cluster.AreaCity;
+import luzq.std.jstd.spbt.model.cluster.SeriesModel;
 import luzq.std.jstd.spbt.model.master.User;
 import luzq.std.jstd.spbt.service.AreaService;
 import luzq.std.jstd.spbt.service.MQService;
@@ -61,6 +62,11 @@ public class TestController {
     @RequestMapping(value = "/city")
     public List<AreaCity> getCity() {
         return areaService.getAllCity();
+    }
+
+    @RequestMapping(value = "/json")
+    public List<SeriesModel> getJson() {
+        return areaService.getAllJson();
     }
 
     @RequestMapping(value = "/mq/send")

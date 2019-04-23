@@ -11,4 +11,13 @@
             select city_id,city_name,province_id from areacity
     </select>
 
+    <select id="getSeriesJson" resultType="luzq.std.jstd.spbt.model.cluster.SeriesJsonModel">
+        select id,json,brandid from di_ser
+    </select>
+
+    <insert id="insertSeries" parameterType="java.util.Map">
+        insert into di_series(seriesid,seriesname,factoryid,factoryname,brandid)
+        value(#{seriesid},#{seriesname},#{factoryid},#{factoryname},#{brandid})
+    </insert>
+
 </mapper>
